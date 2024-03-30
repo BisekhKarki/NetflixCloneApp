@@ -1,0 +1,157 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+.login{
+    background-image: url("../images/loginBg.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    width: 100%;
+    height: 100%;  
+    
+}
+.loginNav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 1200px;
+    position: relative;
+    left: 10%;
+    top: 2%;
+}
+
+.logo{
+    width: 10%;
+    
+}
+.buttonLogin{
+    background-color:rgb(252, 11, 11);
+    color:white;
+    border: none;
+    padding: 10px 10px;
+    border-radius: 10px;
+}
+
+.buttonLogin:hover{
+    background-color: rgb(204, 2, 2);
+}
+
+.loginSection{
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    border:1px solid black;
+    position: absolute;
+    top: 15%;
+    left: 36%;
+    width: 30%;
+    padding: 10px 50px;
+
+}
+.loginSection h1{
+    font-size: 25px;
+}
+
+.userEmail,.userPass{
+    color: white;
+    background-color: rgba(0, 0, 0, 1) ;
+    padding: 10px 20px;
+    width: 90%;
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 13px;
+}
+input:focus{
+   outline: none;
+}
+.showOrHide{
+    font-size: 20px;
+    background: none;
+    color: rgb(169, 167, 167);
+    border: none;
+    cursor: pointer;
+    position: relative;
+    top: 5px;
+    right: 8%;
+    
+}
+.loginButtons{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+}
+.codeSignin{
+    width: 90%;
+    background-color:rgb(47, 46, 46);
+    color:white;
+    border: none;
+    padding: 10px 10px;
+    border-radius: 5px;
+
+}
+.codeSignin:hover{
+    cursor: pointer;
+    background-color:rgb(37, 37, 37)
+}
+.signIn{
+    width: 90%;
+    background-color:rgb(252, 11, 11);
+    color:white;
+    border: none;
+    padding: 10px 10px;
+    border-radius: 5px;
+}
+.signIn:hover{
+    background-color: rgb(204, 2, 2);
+    cursor: pointer;
+}
+
+.lastSection{
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+}
+.check{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    gap: 5px;
+}
+.done{
+    background: none;
+    border: none;
+    font-size: 20px;
+}
+.new{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    font-size: 15px;
+    margin-top: 5px;
+}
+.newNetflix{
+    color: gray;
+}
+.register{
+    cursor: pointer;
+}
+
+.lastLine{
+    font-size: 10px;
+    margin-top: 10px;
+    color: gray ;
+}
+.learnMore{
+    font-size: 10px;
+    margin-top: 10px;
+    color: blue;
+    margin-left: 3px;
+    cursor: pointer;
+}
+
