@@ -1,0 +1,72 @@
+.navigation{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /* width: 1500px; */
+    padding: 10px 10px; 
+
+}
+.navigation::-webkit-scrollbar{
+    background-color: black;
+}
+.logoNetflix{
+    width: 20%;
+}
+a{
+    text-decoration: none;
+
+}
+li{
+    list-style: none;
+}
+.navLists{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 20px;
+}
+.logoAndNav{
+    display: flex;
+    flex-direction: row ;
+    justify-content: space-around;
+    align-items: center;
+}
+.avatar{
+    width: 10%;
+    height: 80%;
+}
+.searchNotification{
+    display: flex;
+    flex-direction: row ;
+    align-items: center;
+    gap: 10px;
+    margin-left: 60px;
+}
+.searchIcon{
+    position: relative;
+    left: 7%;
+    cursor: pointer;
+}
+.searchAnything{
+padding: 5px 30px;
+}
+.notificationIcon{
+    font-size: 20px;
+    cursor: pointer;
+}
+.dropDown{
+    font-size: 25px;
+    cursor: pointer;
+}
+.singOut{
+    position: absolute;
+    top:8%;
+    right: 6.5%;
+    background-color: black;
+    padding: 10px 10px;
+
+}
+.singOut a{
+    color: white;
+}
+
