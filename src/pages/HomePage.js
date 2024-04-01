@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import logo from "../assets/images/logo.png"
 import { Link } from 'react-router-dom'
 import { IoMdNotificationsOutline } from "react-icons/io";
@@ -10,9 +10,26 @@ import { MdOutlineArrowDropDown } from "react-icons/md";
 const Home = () => {
 
   const [showDropDown, setShowDropDown] = useState(false)
+  let menuRef = useRef();
+  // let carousel = useRef(null)
+  
+  
+
   function showDrop(){
     setShowDropDown(!showDropDown)
   }
+  useEffect(()=>{
+    let handler = (e)=>{
+      if (!menuRef.current.contains(e.target)) {
+        setShowDropDown(false);
+      } 
+    }
+    document.addEventListener('mousedown',handler);
+    return ()=>{
+      document.removeEventListener('mousedown',handler)
+    }
+  })
+
 
   const [lists,setLists] = useState([])
 
@@ -46,12 +63,13 @@ const Home = () => {
             <li><Link to="/list" >My List</Link></li>
           </ul>
         </div>
-        <div className="searchNotification">
+        <div className="searchNotification" ref={menuRef}>
           <BiSearchAlt className='searchIcon' />
           <input className='searchAnything' placeholder='Title, people, genre'/>
           <IoMdNotificationsOutline className='notificationIcon' />
           <img src={avatar} className='avatar' alt='avatar' />
-          <MdOutlineArrowDropDown className='dropDown' onClick={showDrop}/>
+          <MdOutlineArrowDropDown className='dropDown' onClick={showDrop} />
+          
           {
             showDropDown ? <div className="singOut">
             <Link to="/">Sign out</Link>
@@ -59,17 +77,24 @@ const Home = () => {
           }
         </div>
       </nav>
-     
+      <div className='mainContainer'>
+      <div className='moviesFetched'> 
       {
         lists.map((items,key)=>{
           return(
             <>
-
-            <img src={`https://image.tmdb.org/t/p/original${items.poster_path}`} /> 
+            <div className='Popular' key={key}>
+            <img src={`https://image.tmdb.org/t/p/original${items.poster_path}`} />
+            </div>
+             
             </>
           )
         })
       }
+      </div>
+      
+      </div>
+      
     </div>
   )
 }
