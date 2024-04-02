@@ -6,6 +6,8 @@
   import avatar from "../assets/images/avatar.png"
   import "../assets/style/Home.css"
   import { MdOutlineArrowDropDown } from "react-icons/md";
+  import { CgChevronRightO, CgChevronLeftO } from "react-icons/cg";
+  import { BsFillPlayCircleFill } from "react-icons/bs";
 
   const Home = () => {
 
@@ -14,6 +16,8 @@
     let carousel = useRef()
     let singleMovieRef = useRef()
     let [card,setCard] = useState(0)
+    const [length,setLength] = useState(0);
+    const [imageIndex,setImageIndex] = useState(0);
 
     function showDrop(){
       setShowDropDown(!showDropDown)
@@ -41,9 +45,9 @@
           let response = await fetch(lists)
           let data =await response.json();
           setLists(data.results);
-          console.log(data)
+          setLength(data.results.length);
         }catch(error){
-          console.log(error)
+          error.log(error)
         }
       }
       FavouriteMovies()
@@ -54,14 +58,25 @@
       let wdith = singleMovieRef.current.clientWidth;
       if(type==="next"){
         carousel.current.style.transform = `translateX(${card-wdith-60}px)`
-        setCard(card-wdith-60);
+        if(imageIndex < length -3){
+          setImageIndex(imageIndex + 1)
+          setCard(card-wdith-60);
+        }
+        
       } 
-      if(type==="previous"){
+      else if(type==="previous"){
         carousel.current.style.transform = `translateX(${card+wdith+60}px)`
-        setCard(card+wdith+60);
+        if(imageIndex > 0){
+          setImageIndex(imageIndex - 1)
+          setCard(card+wdith+60);
+        }
+        
       } 
     }
-
+    let styling = ()=>{
+      let info = document.querySelector(".informations")
+      info.style.display = "show"
+    }
 
     return (
       <div>
@@ -91,15 +106,26 @@
           </div>
         </nav>
         <div className='mainContainer'>
-        <button onClick={()=>onclick("next")}  >Next</button>
-        <button onClick={()=> onclick("previous")} >Previous</button>
+        <div className='buttonAndHeading'>
+          <p className='heading'>Popular On Netflix</p>
+            <div className='carouselButtons'>
+            <button onClick={()=> onclick("previous")} className='prev' disabled={imageIndex===0} ><CgChevronLeftO /></button>
+            <button onClick={()=>onclick("next")} className='next' disabled={imageIndex === length-9}  ><CgChevronRightO /></button>
+            </div>
+        </div>
+        
         <div className='moviesFetched' ref={carousel} > 
         {
           lists.map((items,key)=>{
             return(
               <>
-              <div className='Popular' key={key} ref={singleMovieRef}>
-              <img src={`https://image.tmdb.org/t/p/original${items.poster_path}`} />
+              <div className='Popular' key={key} ref={singleMovieRef} >
+              <img src={`https://image.tmdb.org/t/p/original${items.poster_path}`} onClick={styling} />
+              <div className='informations'>
+                <div className='infoButton'>
+                  <BsFillPlayCircleFill className='playButton'/>
+                </div>
+              </div>
               </div>
               
               </>
