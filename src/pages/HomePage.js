@@ -8,6 +8,10 @@
   import { MdOutlineArrowDropDown } from "react-icons/md";
   import { CgChevronRightO, CgChevronLeftO } from "react-icons/cg";
   import { BsFillPlayCircleFill } from "react-icons/bs";
+  import { FiPlusCircle } from "react-icons/fi";
+  import { AiFillLike } from "react-icons/ai";
+  import { FaCircleChevronDown } from "react-icons/fa6";
+  import { AiFillDislike } from "react-icons/ai";
 
   const Home = () => {
 
@@ -45,6 +49,7 @@
           let response = await fetch(lists)
           let data =await response.json();
           setLists(data.results);
+          console.log(data)
           setLength(data.results.length);
         }catch(error){
           error.log(error)
@@ -75,7 +80,18 @@
     }
     let styling = ()=>{
       let info = document.querySelector(".informations")
-      info.style.display = "show"
+      info.style.display= "show"
+    }
+
+
+    const titleShow = (item)=>{
+      if(item.title && item.title!==" "){
+        return <p className='title'>{item.title}</p>
+      }else if(item.name && item.name !== ""){
+        return <p className='title'>{item.name}</p>
+      } else {
+        return <p className='title'>No name availabe</p>
+      }
     }
 
     return (
@@ -110,7 +126,7 @@
           <p className='heading'>Popular On Netflix</p>
             <div className='carouselButtons'>
             <button onClick={()=> onclick("previous")} className='prev' disabled={imageIndex===0} ><CgChevronLeftO /></button>
-            <button onClick={()=>onclick("next")} className='next' disabled={imageIndex === length-9}  ><CgChevronRightO /></button>
+            <button onClick={()=>onclick("next")} className='next' disabled={imageIndex === length-8}  ><CgChevronRightO /></button>
             </div>
         </div>
         
@@ -120,14 +136,26 @@
             return(
               <>
               <div className='Popular' key={key} ref={singleMovieRef} >
-              <img src={`https://image.tmdb.org/t/p/original${items.poster_path}`} onClick={styling} />
+              <img src={`https://image.tmdb.org/t/p/original${items.poster_path}`} />
               <div className='informations'>
                 <div className='infoButton'>
+                  <div className='leftButton'>
                   <BsFillPlayCircleFill className='playButton'/>
+                  <FiPlusCircle />
+                  < AiFillLike />
+                  <AiFillDislike />
+                  </div>
+                  <div className='rightButton'>
+                    <FaCircleChevronDown />
+                  </div>
+                </div>
+                <div className='titleAndOther'>
+                  {titleShow(items)}
+                  <p className='rating'>Rating: {items.vote_average}</p>
+                  <p className='type'>Genre: {items.media_type}</p>
                 </div>
               </div>
               </div>
-              
               </>
             )
           })
