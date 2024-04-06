@@ -1,78 +1,6 @@
 *{
     scroll-behavior: smooth;
 }
-.navigation{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    /* width: 1500px; */
-    padding: 10px 10px; 
-
-}
-.navigation::-webkit-scrollbar{
-    background-color: black;
-}
-.logoNetflix{
-    width: 20%;
-}
-
-a{
-    text-decoration: none;
-
-}
-li{
-    list-style: none;
-}
-.navLists{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    gap: 20px;
-}
-.logoAndNav{
-    display: flex;
-    flex-direction: row ;
-    justify-content: space-around;
-    align-items: center;
-}
-.avatar{
-    width: 10%;
-    height: 80%;
-}
-.searchNotification{
-    display: flex;
-    flex-direction: row ;
-    align-items: center;
-    gap: 10px;
-    margin-left: 60px;
-}
-.searchIcon{
-    position: relative;
-    left: 7%;
-    cursor: pointer;
-}
-.searchAnything{
-padding: 5px 30px;
-}
-.notificationIcon{
-    font-size: 20px;
-    cursor: pointer;
-}
-.dropDown{
-    font-size: 25px;
-    cursor: pointer;
-}
-.singOut{
-    position: absolute;
-    top:8%;
-    right: 6.5%;
-    background-color: black;
-    padding: 10px 10px;
-
-}
-.singOut a{
-    color: white;
-}
 .mainContainer{
     position: relative;
     overflow: hidden;
@@ -88,9 +16,9 @@ padding: 5px 30px;
     width: 100%;
 }
 .Popular{
-    /* position: relative; */
+    position: relative;
     height: 340px;
-    width: 500px;
+    width: 300px;
     cursor: pointer;
     display: flex;
     flex-direction: column;
@@ -99,10 +27,9 @@ padding: 5px 30px;
 }
 .Popular img{
     width: 180px;
-    height: 170px;
+    height: 150px;
     border-radius:13px 13px 13px 13px ;
 }
-
 
 .Popular:hover{
     transform: scale(1.3);
@@ -187,8 +114,18 @@ padding: 5px 30px;
     border-radius: 0 0 13px 13px;
     display: none;
 }
-/* .Popular img:hover   + .informations{
+.Popular:hover .informations{
     display: block;
     transition: all 1s ease-in-out;
+}
+.bigScreen{
+    position: absolute;
+    top: 40%;
+    left: 20%;
+    /* display: none; */
+}
+.bigScreen img{
+    width: 50%;
+    height: 50%;
+}
 
-} */
