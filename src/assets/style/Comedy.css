@@ -1,4 +1,4 @@
-.horror{
+.comedy {
     display: flex;
     width: 1300px;
     margin-top: 10px;
@@ -8,7 +8,7 @@
     width: 100%;
     /* z-index: -1; */
 }
-.horrorMovies{
+.comedyMovies{
     position: relative;
     height: 340px;
     width: 300px;
@@ -16,20 +16,21 @@
     display: flex;
     flex-direction: column;
 }
-.horrorMovies:hover{
+.comedyMovies:hover{
     transform: scale(1.3);
     transition: all 0.5s ease;
 }
-.horrorMovies img{
+.comedyMovies img{
     width: 180px;
     height: 170px;
     border-radius:13px 13px 13px 13px ;
     
 }
-.horrorMovies img:hover{
+.comedyMovies img:hover{
     border-radius: 13px 13px 0 0;
 }
-.horrorInformation{
+
+.comedyInformation{
     display: flex;
     flex-direction: column;
     background-color: black;
@@ -38,10 +39,10 @@
     border-radius: 0 0 13px 13px;
     display: none;
 }
-.horrorMovies:hover .horrorInformation{
+.comedyMovies:hover .comedyInformation{
     display: block;
 }
-.buttonsShow{
+.showComedy{
     width: 100%;
    display: flex;
    justify-content: space-between;
@@ -50,28 +51,43 @@
    font-size: 20px;
 
 }
-.buttonLeft{
+.comedyLeft{
     display: flex;
     flex-direction: row;
     gap: 5px;
 }
 
-.containerMain{
+.mainComedy{
     position: relative;
     overflow: hidden;
 }
-.carouselButtons{
+.comedyCarousal{
     display: flex;
     flex-direction: row;
     gap: 10px;
 }
 
-.HeadingAndButton{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 1400px;
-    position: relative;
-    left: 4%;
-    top: 10%; 
+
+.next,.prev{
+    border: none;
+    background: none;
+    font-size: 30px;
+    padding: 5px;
+    align-items: center;
+}
+
+.next:hover{
+    cursor: pointer;
+    background:black;
+    color: white;
+    border-radius: 30px;
+    transition: all 1s ease-in;
+    
+}
+.prev:hover{
+    cursor: pointer;
+    background:black;
+    color: white;
+    border-radius: 20px;
+    transition: all 0.5s ease-in;
 }

@@ -8,6 +8,8 @@
   import { AiFillDislike } from "react-icons/ai";
 import Horror from './Horror';
 import Nav from '../components/Nav';
+import Comedies from './Comedies';
+import TopRated from './TopRated';
 
   const Home = () => {
 
@@ -16,14 +18,12 @@ import Nav from '../components/Nav';
     let [card,setCard] = useState(0)
     const [length,setLength] = useState(0);
     const [imageIndex,setImageIndex] = useState(0);
-
-
     const [lists,setLists] = useState([])
 
     useEffect(()=>{
       async function FavouriteMovies(){
         const apiKey = '28ebe13d95487c508f56f7eafba79d50';
-        const lists = `https://api.themoviedb.org/3/trending/all/day?api_key=${apiKey}&page=${1}`
+        const lists = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&page=${1}`
         try{
           let response = await fetch(lists)
           let data =await response.json();
@@ -66,13 +66,7 @@ import Nav from '../components/Nav';
       }
     }
 
-    // const showFullImages = (values)=>{
-    //   return (
-    //     <div className='bigScreen'>
-    //       <img src={`https://image.tmdb.org/t/p/original${values.poster_path}`} />
-    //     </div>
-    //   )
-    // }
+    
 
     return (
       <>
@@ -125,6 +119,8 @@ import Nav from '../components/Nav';
         
       </div>
       <Horror />
+      <Comedies />
+      <TopRated />
       </>
     )
   }

@@ -7,13 +7,11 @@ import { AiFillLike } from "react-icons/ai";
 import { FaCircleChevronDown } from "react-icons/fa6";
 import { AiFillDislike } from "react-icons/ai";
 
-
-
 const Horror = () => {
     const [horrorValues,setHorrorValues] = useState([])
     let horrorCarousel = useRef()
     let singleHorror = useRef()
-    let [card,setCard] = useState(0)
+    let [horrorCard,setHorrorCard] = useState(0)
     let [horrorImageIndex,sethorrorImageIndex] = useState(0);
     const [horrorLength,setHorrorLength] = useState(0)
 
@@ -26,7 +24,7 @@ const Horror = () => {
             const horrorData = await fetch(horrorList);
             const horrorResponse =await horrorData.json();
             setHorrorValues(horrorResponse.results)
-            setHorrorLength(horrorResponse.length)
+            setHorrorLength(horrorResponse.results.length)
           }catch (error){
             error.log(error)
            }
@@ -43,23 +41,21 @@ const Horror = () => {
             return <p>No title Available</p>
         }
     }
-    // let horrorWidth = singleHorror.current.clientWidth;
-    // console.log(horrorWidth)
 
-    let prevNext = (type)=>{
+    let prevNext = (nextOrPrev)=>{
         let horrorWidth = singleHorror.current.clientWidth;
         
-        if(type==="next"){
-            horrorCarousel.current.style.transform = `translateX(${card - horrorWidth -180}px)`
+        if(nextOrPrev==="next"){
+            horrorCarousel.current.style.transform = `translateX(${horrorCard - horrorWidth - 60}px)`;
             if(horrorImageIndex < horrorLength -3){
                 sethorrorImageIndex(horrorImageIndex+1)
-                setCard(card - horrorWidth -60)
+                setHorrorCard(horrorCard - horrorWidth - 60)
             }
-        }if (type==="previous"){
-            horrorCarousel.current.style.transform = `translateX(${card + horrorWidth +180}px)`
-            if(horrorImageIndex>0){
+        }else if (nextOrPrev==="previous"){
+            horrorCarousel.current.style.transform = `translateX(${horrorCard + horrorWidth +  60}px)`;
+            if(horrorImageIndex > 0){
                 sethorrorImageIndex(horrorImageIndex-1)
-                setCard(card + horrorWidth +60)
+                setHorrorCard(horrorCard + horrorWidth +60)
             }
         }
     }
