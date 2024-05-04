@@ -4,6 +4,9 @@
     justify-content: space-between;
     /* width: 1500px; */
     padding: 10px 10px; 
+    color: white;
+    background-color: black;
+    /* background: transparent; */
 
 }
 .navigation::-webkit-scrollbar{
@@ -15,6 +18,7 @@
 
 a{
     text-decoration: none;
+    color: white;
 
 }
 li{
@@ -42,14 +46,18 @@ li{
     align-items: center;
     gap: 10px;
     margin-left: 60px;
+    color: white;
 }
 .searchIcon{
     position: relative;
     left: 7%;
+    color: black;
     cursor: pointer;
 }
 .searchAnything{
 padding: 5px 30px;
+color: white;
+border: 1px solid white;
 }
 .notificationIcon{
     font-size: 20px;
@@ -60,13 +68,14 @@ padding: 5px 30px;
     cursor: pointer;
 }
 .singOut{
-    position: absolute;
+    position: relative;
     top:8%;
-    right: 6.5%;
-    background-color: black;
+    left: 0%;
+    background-color:white;
     padding: 10px 10px;
-
+    color: white;
 }
 .singOut a{
-    color: white;
+    color: black;
+    background-color: white;
 }

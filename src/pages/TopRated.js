@@ -13,7 +13,7 @@ const TopRated = () => {
     let singleCarousal = useRef();
     let topCarousal = useRef();
     let [topIndex, setTopIndex] = useState(0)
-    let [topLength, setTopLength] = useState(0);
+    const [topLength, setTopLength] = useState(0);
     let [topCard,setTopCard] = useState(0)
 
 
@@ -36,19 +36,21 @@ const TopRated = () => {
     },[ ])
 
 
-    let move = (type)=>{
+    const move = (Toptype)=>{
         let topWidth = singleCarousal.current.clientWidth
-        if(type==="next"){
+        if(Toptype === "next"){
             topCarousal.current.style.transform = `translateX(${topCard - topWidth - 60}px)`
-            if(topIndex< topLength -3 ){
-                setTopIndex(topCard - topWidth - 60);
-                setTopCard(topIndex+1)
+            if(topIndex < topLength -3 ){
+              setTopCard(topIndex+1)
+              setTopIndex(topCard - topWidth - 60);
+                
             }
-        } else if (type === "prev"){
+        } else if (Toptype === "prev"){
             topCarousal.current.style.transform = `translateX(${topCard + topWidth + 60}px)`;
             if(topIndex>0){
-                setTopIndex(topCard + topWidth + 60);
-                setTopCard(topIndex-1)
+              setTopCard(topIndex-1)
+              setTopIndex(topCard + topWidth + 60);
+               
             }
         }
 
@@ -70,8 +72,7 @@ const TopRated = () => {
     }
   return (
     <>
-   <div>
-        <div className='mainTop'>
+   <div className='topMain'>
         <div className='HeadingAndButton'>
           <p className='heading'>Top Movies</p>
             <div className='topCarousal'>
@@ -80,7 +81,7 @@ const TopRated = () => {
             </div>
         </div>
         
-        <div className='top' ref={topCarousal}> 
+        <div className='top' ref={topCarousal}>   
         {
           topRatedMovies.map((values,key)=>{
             return(
@@ -112,13 +113,7 @@ const TopRated = () => {
           })
         }
         </div>
-        
         </div>
-        
-        
-      </div>
-
-
     </>
   )
 }

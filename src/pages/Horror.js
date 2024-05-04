@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import "../assets/style/Horror.css";
-import { CgChevronRightO, CgChevronLeftO } from "react-icons/cg";
+import { FaChevronLeft } from "react-icons/fa";
+import { FaChevronRight } from "react-icons/fa";
 import { BsFillPlayCircleFill } from "react-icons/bs";
 import { FiPlusCircle } from "react-icons/fi";
 import { AiFillLike } from "react-icons/ai";
@@ -8,99 +9,110 @@ import { FaCircleChevronDown } from "react-icons/fa6";
 import { AiFillDislike } from "react-icons/ai";
 
 const Horror = () => {
-    const [horrorValues,setHorrorValues] = useState([])
-    let horrorCarousel = useRef()
-    let singleHorror = useRef()
-    let [horrorCard,setHorrorCard] = useState(0)
-    let [horrorImageIndex,sethorrorImageIndex] = useState(0);
-    const [horrorLength,setHorrorLength] = useState(0)
+    const [horror,setHorror] = useState([])
+    console.log(horror[0])
+    let [lengths,setLengths] = useState(0)
+    let singlehorror = useRef();
+    let horrorCarousal = useRef();
+    let [card,setCard] = useState(0)
+    let [index,setIndex] = useState(0) 
+    
+   useEffect(()=>{
+    const horrorMovies = async ()=>{
+        const apiKey ='28ebe13d95487c508f56f7eafba79d50';
+        const apiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${27}`
+        try{
+            let data = await fetch(apiUrl)
+            let response = await data.json();
+            setHorror(response.results)
+            setLengths(response.results.length)
 
-    useEffect(()=>{
-        async function horrorMovies(){
-            let apiKey =  '28ebe13d95487c508f56f7eafba79d50';
-            let horrorGenreID = 27;
-            const horrorList = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${horrorGenreID}`
-           try{
-            const horrorData = await fetch(horrorList);
-            const horrorResponse =await horrorData.json();
-            setHorrorValues(horrorResponse.results)
-            setHorrorLength(horrorResponse.results.length)
-          }catch (error){
-            error.log(error)
-           }
+        }catch(error){
+            console.log(error)
         }
-        horrorMovies()
-    },[ ])
+    }
+    horrorMovies()
 
-    const horroTitle = (val)=>{
-        if(val.title && val.title!== " "){
-            return <p>{val.title}</p>
-        }else if(val.nam && val.name !== " "){
-            return <p>{val.name}</p>
-        } else {
-            return <p>No title Available</p>
+   },[])
+
+   const setCarousal = (type)=>{
+    let horrorWidth = singlehorror.current.clientWidth;
+    if(type==="next"){
+        horrorCarousal.current.style.transform = `translateX(${card - horrorWidth - 60}px)`
+        if(index<lengths-2){
+            setCard(card - horrorWidth-60)
+            setIndex(index +1)
+        }
+
+    } else if(type==="prev"){
+        horrorCarousal.current.style.transform = `translateX(${card + horrorWidth + 60}px)`
+        if(index>0){
+            setCard(card + horrorWidth+60)
+            setIndex(index-1)
         }
     }
 
-    let prevNext = (nextOrPrev)=>{
-        let horrorWidth = singleHorror.current.clientWidth;
-        
-        if(nextOrPrev==="next"){
-            horrorCarousel.current.style.transform = `translateX(${horrorCard - horrorWidth - 60}px)`;
-            if(horrorImageIndex < horrorLength -3){
-                sethorrorImageIndex(horrorImageIndex+1)
-                setHorrorCard(horrorCard - horrorWidth - 60)
-            }
-        }else if (nextOrPrev==="previous"){
-            horrorCarousel.current.style.transform = `translateX(${horrorCard + horrorWidth +  60}px)`;
-            if(horrorImageIndex > 0){
-                sethorrorImageIndex(horrorImageIndex-1)
-                setHorrorCard(horrorCard + horrorWidth +60)
-            }
-        }
+
+   }
+
+   const titleShow = (t)=>{
+    if(t.title && t.title !== ""){
+        return <h3>{t.title}</h3>
+    } else if (t.name && t.name !== ""){
+        return <h3>{t.name}</h3>
+    }else {
+        return <h3>No titles available</h3>
     }
+   }
+
+
+const informations = (values)=>{
+
+        return(
+            <div className='informations'>
+            <div className='infoButton'>
+              <div className='leftButton'>
+              <BsFillPlayCircleFill className='playButton'/>
+              <FiPlusCircle />
+              < AiFillLike />
+              <AiFillDislike />
+              </div>
+              <div className='rightButton'>
+                <FaCircleChevronDown  />
+              </div>
+            </div>
+            <div className='titleAndOther'>
+              {titleShow(values)}
+              <p className='rating'>Rating: {values.vote_average}</p>
+              <p className='type'>Release Date: {values.release_date}</p>
+            </div>
+          </div>
+        )
+    }
+
   return (
     <>
-    <div className='containerMain'>
-    <div className='HeadingAndButton'>
-          <p className='heading'>Horror Movies</p>
-            <div className='carouselButtons'>
-            <button onClick={()=>prevNext("previous")} className='prev' disabled={horrorImageIndex===0}><CgChevronLeftO /></button>
-            <button onClick={()=>prevNext("next")} className='next' disabled={horrorImageIndex === horrorLength-8}><CgChevronRightO /></button>
-            </div>
-        </div>
-    <div className='horror' ref={horrorCarousel}>
-        {horrorValues.map((val,key)=>{
-            return(
+    <div className='mainHorror'>
+    <h1>Horror Movies</h1>
+    <div className='horror' ref={horrorCarousal}>
+    {
+        horror.map((h,key)=>{
+            return (
                 <>
-                <div  key={key} className='horrorMovies' ref={singleHorror}>
-                    <img src={`https://image.tmdb.org/t/p/original${val.poster_path}`} />
-                <div className='horrorInformation'>
-                    <div className='buttonsShow'>
-                    <div  className='buttonLeft'>
-                        <BsFillPlayCircleFill className='playButton'/>
-                        <FiPlusCircle />
-                        < AiFillLike />
-                        <AiFillDislike />
-                    </div>
-                    <div className='buttonRight'>
-                    <FaCircleChevronDown  />
-                    </div>
-                    </div>
-                    <div className='titleAndOthers'>
-                        {horroTitle(val)}
-                        <p className='rating'> Rating: {val.vote_average}</p>
-                        <p className='type'>Genre: {val.media_type}</p>
-                    </div>
+                <div className='horrorMovies' key={key} ref={singlehorror}>
+                <img src={`https://image.tmdb.org/t/p/original${h.poster_path}`} />  
+                {informations(h)}   
                 </div>
-
-                </div>
-                
                 </>
             )
-        })}
+        })
+    }
     </div>
-
+    <div className='horrorButtons'>
+    <button className='leftHorror' onClick={()=>setCarousal("prev")} disabled={index===0}><FaChevronLeft /></button>
+    <button className='rightHorror' onClick={()=>setCarousal("next")} disabled={index === lengths - 9}  ><FaChevronRight/></button>
+    </div>
+    
     </div>
     </>
   )
