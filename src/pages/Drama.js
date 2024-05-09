@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react'
-import "../assets/style/Horror.css";
 import { FaChevronLeft } from "react-icons/fa";
 import { FaChevronRight } from "react-icons/fa";
 // import { BsFillPlayCircleFill } from "react-icons/bs";
@@ -7,52 +6,58 @@ import { FaChevronRight } from "react-icons/fa";
 // import { AiFillLike } from "react-icons/ai";
 // import { FaCircleChevronDown } from "react-icons/fa6";
 // import { AiFillDislike } from "react-icons/ai";
+import "../assets/style/Drama.css"
 
-const Horror = () => {
-    const [horror,setHorror] = useState([])
+
+
+const Drama = () => {
+
+
+    const [Dramas,setDrama] = useState([])
     let [lengths,setLengths] = useState(0)
-    let singlehorror = useRef();
-    let horrorCarousal = useRef();
+    let singleDrama = useRef();
+    let DramaCarousal = useRef();
     let [card,setCard] = useState(0)
     let [index,setIndex] = useState(0) 
     
    useEffect(()=>{
-    const horrorMovies = async ()=>{
+    const DramaMovies = async ()=>{
         const apiKey ='28ebe13d95487c508f56f7eafba79d50';
-        const apiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${27}`
+        const apiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${18}`
         try{
             let data = await fetch(apiUrl)
             let response = await data.json();
-            setHorror(response.results)
+            setDrama(response.results)
             setLengths(response.results.length)
 
         }catch(error){
             console.log(error)
         }
     }
-    horrorMovies()
+    DramaMovies()
 
    },[])
 
    const setCarousal = (type)=>{
-    let horrorWidth = singlehorror.current.clientWidth;
+    let DramaWidth = singleDrama.current.clientWidth;
     if(type==="next"){
-        horrorCarousal.current.style.transform = `translateX(${card - horrorWidth - 60}px)`
+        DramaCarousal.current.style.transform = `translateX(${card - DramaWidth - 60}px)`
         if(index<lengths-2){
-            setCard(card - horrorWidth-60)
+            setCard(card - DramaWidth-60)
             setIndex(index +1)
         }
 
     } else if(type==="prev"){
-        horrorCarousal.current.style.transform = `translateX(${card + horrorWidth + 60}px)`
+        DramaCarousal.current.style.transform = `translateX(${card + DramaWidth + 60}px)`
         if(index>0){
-            setCard(card + horrorWidth+60)
+            setCard(card + DramaWidth+60)
             setIndex(index-1)
         }
     }
 
 
    }
+    
 
 //    const titleShow = (t)=>{
 //     if(t.title && t.title !== ""){
@@ -88,33 +93,32 @@ const Horror = () => {
 //           </div>
 //         )
 //     }
-
   return (
-    <>
-    <div className='mainHorror'>
-    <h1>Horror</h1>
-    <div className='horror' ref={horrorCarousal}>
+   <>
+   <div className='mainDrama'>
+    <h1>Drama</h1>
+    <div className='Drama' ref={DramaCarousal}>
     {
-        horror.map((h,key)=>{
+        Dramas.map((an,key)=>{
             return (
                 <>
-                <div className='horrorMovies' key={key} ref={singlehorror}>
-                <img src={`https://image.tmdb.org/t/p/original${h.poster_path}`} />  
-                {/* {informations(h)}    */}
+                <div className='DramaMovies' key={key} ref={singleDrama}>
+                <img src={`https://image.tmdb.org/t/p/original${an.poster_path}`} />  
+                {/* {informations(a)}    */}
                 </div>
                 </>
             )
         })
     }
     </div>
-    <div className='horrorButtons'>
-    <button className='leftHorror' onClick={()=>setCarousal("prev")} disabled={index===0}><FaChevronLeft /></button>
-    <button className='rightHorror' onClick={()=>setCarousal("next")} disabled={index === lengths - 9}  ><FaChevronRight/></button>
+    <div className='DramaButtons'>
+    <button className='leftDrama' onClick={()=>setCarousal("prev")} disabled={index===0}><FaChevronLeft /></button>
+    <button className='rightDrama' onClick={()=>setCarousal("next")} disabled={index === lengths - 9}  ><FaChevronRight/></button>
     </div>
     
     </div>
-    </>
+   </>
   )
 }
 
-export default Horror
+export default Drama

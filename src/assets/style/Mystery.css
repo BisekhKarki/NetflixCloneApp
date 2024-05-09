@@ -1,38 +1,36 @@
-/* *{
-    background-color: black;
-} */
-.comedies{
-    /* margin-bottom: 40px; */
-    margin-left: 20px;
-    overflow: hidden;
-}
-.comedies h1{
+.Mystery{
     color: white;
-}
-.comediesMovies{
     display: flex;
     flex-direction: row;
     gap: 5px;
-    margin-top: 10px;
-    margin-bottom: 10px;
     transition: all 0.6s ease-in-out;
-}
-.co{
-    height: auto;
-}
-.co:hover{
-    cursor: pointer;
-    transform: scale(1.2);
-    transition: all 0.6s ease;
-}
+    /* margin-bottom: 120px; */
+    margin-left: 20px;
 
-.co img{
+}
+.MysteryMovies:hover{
+    transform: scale(1.2);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.MysteryMovies img{
     width: 210px;
     height: 250px;
     border-radius: 10px;
-    
 }
-.leftC{
+.mainMystery h1{
+ color: white;
+ margin-left: 20px;
+ margin-bottom: 15px;
+}
+.mainMystery{
+    overflow: hidden;
+}
+.MysteryButtons{
+    display: flex;
+    flex-direction: row;
+}
+.leftMystery{
     position: relative;
     width: 40px;
     height: 85%;
@@ -45,30 +43,31 @@
     color: white;
 }
 
-.leftC:hover{
+.leftMystery:hover{
     cursor: pointer;
     background-color:rgba(0, 0, 0, 0.5);
     color: white;
     transition: all 0.6s ease-in-out;
 }
 
-.rightC{
-    position: relative;
-    width: 40px;
-    height: 85%;
-    top: -150px;
-    left: 95%;
-    font-size: 30px;
-    background: transparent;
-    border: none;
-    border-top: 10px;
+.rightMystery{
+
+        position: relative;
+        width: 40px;
+        height: 85%;
+        top: -150px;
+        left: 95%;
+        font-size: 30px;
+        background: transparent;
+        border: none;
+        border-top: 10px;
+        color: white;
+    }
+.rightMystery:hover{
+    cursor: pointer;
+    background-color:rgba(0, 0, 0, 0.5);
     color: white;
-}
-.rightC:hover{
-cursor: pointer;
-background-color:rgba(0, 0, 0, 0.5);
-color: white;
-transition: all 0.6s ease-in-out;
+    transition: all 0.6s ease-in-out;
 }
 .informations{
     position: absolute;
@@ -83,7 +82,7 @@ transition: all 0.6s ease-in-out;
    
 }
 
-.co:hover .informations{
+.MysteryMovies:hover .informations{
     display: block;
     transition: all 1s ease-in-out;
 }

@@ -7,46 +7,47 @@ import { FaChevronRight } from "react-icons/fa";
 // import { AiFillLike } from "react-icons/ai";
 // import { FaCircleChevronDown } from "react-icons/fa6";
 // import { AiFillDislike } from "react-icons/ai";
+import "../assets/style/ScienceFiction.css"
 
-const Horror = () => {
-    const [horror,setHorror] = useState([])
+const SciFi = () => {
+    const [sifi,setSifi] = useState([])
     let [lengths,setLengths] = useState(0)
-    let singlehorror = useRef();
-    let horrorCarousal = useRef();
+    let singleSifi = useRef();
+    let sifiCarousal = useRef();
     let [card,setCard] = useState(0)
     let [index,setIndex] = useState(0) 
     
    useEffect(()=>{
-    const horrorMovies = async ()=>{
+    const ScienceFiction = async ()=>{
         const apiKey ='28ebe13d95487c508f56f7eafba79d50';
-        const apiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${27}`
+        const apiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${18}`
         try{
             let data = await fetch(apiUrl)
             let response = await data.json();
-            setHorror(response.results)
+            setSifi(response.results)
             setLengths(response.results.length)
 
         }catch(error){
             console.log(error)
         }
     }
-    horrorMovies()
+    ScienceFiction()
 
    },[])
 
    const setCarousal = (type)=>{
-    let horrorWidth = singlehorror.current.clientWidth;
+    let scifiWidth = singleSifi.current.clientWidth;
     if(type==="next"){
-        horrorCarousal.current.style.transform = `translateX(${card - horrorWidth - 60}px)`
+        sifiCarousal.current.style.transform = `translateX(${card - scifiWidth - 60}px)`
         if(index<lengths-2){
-            setCard(card - horrorWidth-60)
+            setCard(card - scifiWidth-60)
             setIndex(index +1)
         }
 
     } else if(type==="prev"){
-        horrorCarousal.current.style.transform = `translateX(${card + horrorWidth + 60}px)`
+        sifiCarousal.current.style.transform = `translateX(${card + scifiWidth + 60}px)`
         if(index>0){
-            setCard(card + horrorWidth+60)
+            setCard(card + scifiWidth+60)
             setIndex(index-1)
         }
     }
@@ -91,15 +92,15 @@ const Horror = () => {
 
   return (
     <>
-    <div className='mainHorror'>
-    <h1>Horror</h1>
-    <div className='horror' ref={horrorCarousal}>
+    <div className='mainSifi'>
+    <h1>Science Fiction </h1>
+    <div className='scienceFiction' ref={sifiCarousal}>
     {
-        horror.map((h,key)=>{
+        sifi.map((sifi,key)=>{
             return (
                 <>
-                <div className='horrorMovies' key={key} ref={singlehorror}>
-                <img src={`https://image.tmdb.org/t/p/original${h.poster_path}`} />  
+                <div className='sifiMovies' key={key} ref={singleSifi}>
+                <img src={`https://image.tmdb.org/t/p/original${sifi.poster_path}`} />  
                 {/* {informations(h)}    */}
                 </div>
                 </>
@@ -107,9 +108,9 @@ const Horror = () => {
         })
     }
     </div>
-    <div className='horrorButtons'>
-    <button className='leftHorror' onClick={()=>setCarousal("prev")} disabled={index===0}><FaChevronLeft /></button>
-    <button className='rightHorror' onClick={()=>setCarousal("next")} disabled={index === lengths - 9}  ><FaChevronRight/></button>
+    <div className='sifiButtons'>
+    <button className='lefSifi' onClick={()=>setCarousal("prev")} disabled={index===0}><FaChevronLeft /></button>
+    <button className='rightSifi' onClick={()=>setCarousal("next")} disabled={index === lengths - 9}  ><FaChevronRight/></button>
     </div>
     
     </div>
@@ -117,4 +118,4 @@ const Horror = () => {
   )
 }
 
-export default Horror
+export default SciFi

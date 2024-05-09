@@ -1,0 +1,19 @@
+.Footer{
+    color: white;
+    position: relative;
+    text-align: center;
+    margin-top: 60px;
+    padding: 60px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.socialIcons{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-left: 690px;
+    font-size: 20px;
+    cursor: pointer;
+}
