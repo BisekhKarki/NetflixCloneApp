@@ -1,0 +1,60 @@
+.showBigScreen{
+    position: absolute;
+    bottom: 40%;
+    left: 25%;
+    width: 100%;
+    cursor: pointer;
+}
+.showBigScreen img{
+    width: 700px;
+    height: 500px;
+    border-radius:12px 12px  0px 0px;
+}
+
+
+.informations{
+    position: relative;
+    top: -10px;
+    width: 38.2%;
+    height: 100%;
+    border: 1px solid black;
+    background-color: black;
+    color: white;
+    padding: 10px 10px;
+    border-radius: 0 0 13px 13px;
+    
+}
+/* .bigPoster:hover .informations{
+    display: block;
+    transition: all 1s ease-in-out;
+} */
+
+.infoButton{
+    display: flex;
+    justify-content: space-between;
+    font-size: 30px;
+}
+.leftButton{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+.titleAndOther p{
+    font-size: 80px;
+}
+.titleAndOther h1{
+    font-size: 40px
+}
+.titleAndOther{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    
+}
+.titleAndOther p{
+    font-size: 25px;
+}
+.rating{
+    color: rgb(23, 223, 23);
+
+}

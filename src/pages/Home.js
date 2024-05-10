@@ -4,11 +4,12 @@ import { FaPlay } from "react-icons/fa";
 import { IoMdInformationCircle } from "react-icons/io";
 import { FaChevronLeft } from "react-icons/fa";
 import { FaChevronRight } from "react-icons/fa";
-// import { BsFillPlayCircleFill } from "react-icons/bs";
-// import { FiPlusCircle } from "react-icons/fi";
-// import { AiFillLike } from "react-icons/ai";
-// import { FaCircleChevronDown } from "react-icons/fa6";
-// import { AiFillDislike } from "react-icons/ai";
+import { BsFillPlayCircleFill } from "react-icons/bs";
+import { FiPlusCircle } from "react-icons/fi";
+import { AiFillLike } from "react-icons/ai";
+import { FaCircleChevronDown } from "react-icons/fa6";
+import { AiFillDislike } from "react-icons/ai";
+import "../assets/style/Bigscreen.css"
 
 const Home = () => {
     const [data,setData] = useState([]);
@@ -19,6 +20,8 @@ const Home = () => {
     let movieCarousal = useRef();
     let [card,setCard] = useState(0)
     const [index,setIndex] = useState(0);
+    const [bigScreen, setBigScreen] = useState([])
+    const [showComp, setShowComp] = useState(false)
    
 
     useEffect(()=>{
@@ -85,6 +88,43 @@ const Home = () => {
         }
     }
 
+
+    const showBigScreen = (items)=>{
+        setBigScreen(items)
+        setShowComp(!showComp)
+        
+    }
+
+const informations = (values)=>{
+        return(
+            <>
+            <div className='showBigScreen' style={{display: showComp ? "block": "none"}}>
+              <img src={`https://image.tmdb.org/t/p/original${values.poster_path}`} className='bigPoster'  />
+              <div className='informations'>
+            <div className='infoButton'>
+              <div className='leftButton'>
+              <BsFillPlayCircleFill className='playButton'/>
+              <FiPlusCircle />
+              < AiFillLike />
+              <AiFillDislike />
+              </div>
+              <div className='rightButton'>
+                <FaCircleChevronDown  onClick={()=>setShowComp(!showComp)} />
+              </div>
+            </div>
+            <div className='titleAndOther'>
+              {titleShow(values)}
+              <p className='rating'>Rating: {values.vote_average}</p>
+              <p className='type'>Release Date: {values.release_date}</p>
+            </div>
+          </div>
+            </div>
+            
+            </>
+            
+        )
+    }
+
   return (
     <>
     <div className='home' style={{backgroundImage:`url(https://image.tmdb.org/t/p/original${data.poster_path})`
@@ -98,17 +138,14 @@ const Home = () => {
         <button className='playSingle'><FaPlay />Play</button>
         <button className='singleInfo'><IoMdInformationCircle />More Info</button>
         </div>
-        
         <div className='moreDatas'>
-        
             <h1 className='head'>Popular on Netflix</h1>
              <div className='homeMovies' ref={movieCarousal}>
             {
                 movies.map((items,key)=>{
                     return(
                         <div className='movies' key={key} ref={singleCarousal}>
-                        <img src={`https://image.tmdb.org/t/p/original${items.poster_path}`} className='poster'  />
-
+                        <img src={`https://image.tmdb.org/t/p/original${items.poster_path}`} className='poster' onClick={()=>showBigScreen(items)}  />
                        </div> 
                     )
                 })
@@ -116,6 +153,8 @@ const Home = () => {
             </div>
             <button className='leftHome' onClick={()=>carousal("prev")} disabled={index===0}  ><FaChevronLeft /></button>  
             <button className='right' onClick={()=>carousal("next")} disabled={index === movieLength -9}><FaChevronRight /></button>
+            {informations(bigScreen)}
+ 
         </div>
     </div>
     
