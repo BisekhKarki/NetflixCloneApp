@@ -1,0 +1,28 @@
+.myList img{
+    width: 200px;
+    height: 250px;
+    border-radius: 10px;
+    cursor: pointer;
+    
+}
+/* .myList img:hover{
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+} */
+.myList{
+    margin-top: 20px;
+    margin-left: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px;
+    
+    
+}
+.unlike{
+    position: relative;
+    left: 190px;
+    top: -230px;
+    color: rgb(255, 16, 16);
+    cursor: pointer;
+}

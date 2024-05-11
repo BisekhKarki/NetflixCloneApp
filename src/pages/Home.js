@@ -10,6 +10,7 @@ import { AiFillLike } from "react-icons/ai";
 import { FaCircleChevronDown } from "react-icons/fa6";
 import { AiFillDislike } from "react-icons/ai";
 import "../assets/style/Bigscreen.css"
+import { ImCross } from "react-icons/im";
 
 const Home = () => {
     const [data,setData] = useState([]);
@@ -22,6 +23,8 @@ const Home = () => {
     const [index,setIndex] = useState(0);
     const [bigScreen, setBigScreen] = useState([])
     const [showComp, setShowComp] = useState(false)
+    const [localsData,setLocalsData] = useState([]);
+    
    
 
     useEffect(()=>{
@@ -95,21 +98,31 @@ const Home = () => {
         
     }
 
+    const setToLocalStorage = (vala) => {
+        const newData = [...localsData, vala];
+        setLocalsData(newData)
+        localStorage.setItem("Datas", JSON.stringify(newData));
+    };
+    
+    
+
 const informations = (values)=>{
         return(
             <>
-            <div className='showBigScreen' style={{display: showComp ? "block": "none"}}>
+             
+            <div className='showBigScreen' style={{display: showComp ? "block": "none" }}>
+            <ImCross className='wrong' onClick={()=>setShowComp(!showComp)} />
               <img src={`https://image.tmdb.org/t/p/original${values.poster_path}`} className='bigPoster'  />
               <div className='informations'>
             <div className='infoButton'>
               <div className='leftButton'>
               <BsFillPlayCircleFill className='playButton'/>
-              <FiPlusCircle />
-              < AiFillLike />
+              <FiPlusCircle onClick={()=>setToLocalStorage(values)} />
+              <AiFillLike />
               <AiFillDislike />
               </div>
               <div className='rightButton'>
-                <FaCircleChevronDown  onClick={()=>setShowComp(!showComp)} />
+                <FaCircleChevronDown   />
               </div>
             </div>
             <div className='titleAndOther'>
@@ -128,7 +141,7 @@ const informations = (values)=>{
   return (
     <>
     <div className='home' style={{backgroundImage:`url(https://image.tmdb.org/t/p/original${data.poster_path})`
-        , backgroundPosition:"center", backgroundRepeat:"no-repeat", backgroundSize:"cover", backdropFilter:"2px"}} >
+        , backgroundPosition:"center", backgroundRepeat:"no-repeat", backgroundSize:"cover"}} >
             <div></div>
         <div className='singleData' style={{color:"white", background:"none"}} >
             {titleShow(data)}
