@@ -9,7 +9,7 @@ const MyList = () => {
 //   console.log(arr)
 
   useEffect(() => {
-    const homeDatas = localStorage.getItem('Home Datas');
+    const homeDatas = localStorage.getItem('Movies');
     const parsedHome = JSON.parse(homeDatas);
     setArr(parsedHome);
   }, []);
@@ -17,7 +17,7 @@ const MyList = () => {
   const removeItem = (ab)=>{
     const updatedArr = arr.filter(item => item !== ab);
     setArr(updatedArr);
-    localStorage.setItem('Datas', JSON.stringify(updatedArr)); 
+    localStorage.setItem('Movies', JSON.stringify(updatedArr)); 
   }
 
   return (

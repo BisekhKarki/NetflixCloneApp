@@ -99,13 +99,14 @@ const Home = () => {
     }
 
     const setToLocalStorage = (vala) => {
-        const newData = [...localsData, vala];
+        let newData = [...localsData, vala];
         setLocalsData(newData)
-        localStorage.setItem("Datas", JSON.stringify(newData));
+        localStorage.setItem("Movies",JSON.stringify(localsData))
+        
     };
     
     
-
+    
 const informations = (values)=>{
         return(
             <>
