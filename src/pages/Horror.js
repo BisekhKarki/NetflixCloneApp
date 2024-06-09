@@ -84,7 +84,7 @@ const Horror = () => {
         <div className='infoButtonHorror'>
           <div className='leftButtonHorror'>
           <BsFillPlayCircleFill className='playButtonHorror' />
-          <FiPlusCircle onClick={()=>setToLocalStorage(val)} />
+          <FiPlusCircle />
           <AiFillLike />
           <AiFillDislike />
           </div>
